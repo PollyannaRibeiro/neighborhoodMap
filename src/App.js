@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ListLocations from './ListLocations'
 import MapContainer from './MapContainer'
+import ResponsiveMenu from './Burger'
 
 
 class App extends Component {
@@ -92,6 +94,7 @@ class App extends Component {
     service.getDetails(request, callback.bind(this));
   }
 
+  // when the place is selected, update the state and fetch the place details
   onPlaceSelected(place){
     let places = this.state.places;
     let filteredPlaces = this.state.filteredPlaces;
@@ -111,8 +114,14 @@ class App extends Component {
     return (
       <div className="App">
         <header className="header">
+          <ResponsiveMenu/>
           <h1>London's Museums</h1>
         </header>
+        <ListLocations 
+          selectedPlace={this.state.selectedPlace}
+          places={this.state.filteredPlaces} 
+          onQueryChanged={this.updateQuery.bind(this)} 
+          onPlaceSelected={this.onPlaceSelected.bind(this)} />
         <MapContainer 
           selectedPlace={this.state.selectedPlace}
           selectedPlaceDetails={this.state.selectedPlaceDetails}
