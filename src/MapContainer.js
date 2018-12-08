@@ -19,6 +19,7 @@ class MapContainer extends Component {
         map: null
     }
 
+    // when the map is loaded, configures properties and send mapProps and to the parent component
     onMapReady(mapProps, map){
         this.setState({mapProps: mapProps, map: map})
         this.props.onMapLoaded(mapProps, map);
@@ -41,10 +42,12 @@ class MapContainer extends Component {
         let selectedPlaceName = selectedPlace ? selectedPlace.name : ""
         let selectedMaker = null
 
+        // if the map is configured add the markers
         if (this.state.mapProps) {
             const {google} = this.state.mapProps;
             let map = this.state.map;
 
+            // remove previous markers
             if (this.markers) {
                 this.markers.forEach((marker)=>{
                     marker.setMap(null);
@@ -77,6 +80,7 @@ class MapContainer extends Component {
             phone = prop.formatted_phone_number
             address = prop.formatted_address
             
+            // if there is any picture dispplays the first one
             if (prop.photos && prop.photos.length > 0){
                 photo = prop.photos[0].getUrl()
             }
