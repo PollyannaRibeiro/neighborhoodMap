@@ -1,45 +1,30 @@
+# Neighborhood Map Project
+
+It's a project for Udacity's React course.
+
+### Goal:
+Developing a single page application featuring a map of your neighbourhood or a neighbourhood you would like to visit. Adding functionality to this map including highlighted locations, third-party data about those locations and various ways to browse the content.
+
+### What learn with that?
+
+How design patterns and UI libraries like React assist in developing a manageable codebase. Understanding and exploring how frameworks can decrease the time required developing an application and provide a number of utilities to use. Finally, implementing third-party APIs that provide valuable data sets that can improve the quality of your application.
+
+
+# Challenges on this project
+
+It was the first project that I built from scratch, without any existing starter code or model to follow. 
+
+I decided to build an App with the Museums of the central area of London, including on that the respective links to Wikipedia. That way, the user could have more information about these places easily. 
+
+I made my own design decisions. I needed to draw some ideas to organize how it would be built. Breaking it into components, studying Google Maps API and, finally,I started building this project. 
+
+# Installation
+
+- Clone/Download this repo.
+- Run `npm install` or `yarn install` in the project directory to install dependencies.
+- Run `npm start` or `yarn start` to start the application.
+- Navigate to [http://localhost:3000/](http://localhost:3000/) to view the application.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-# neighborhoodMap
