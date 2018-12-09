@@ -31,11 +31,12 @@ class ListLocations extends Component {
         let places = this.props.places;
 
         return(
-            <div className="sidebar">
+            <div className="sidebar" role="navigation">
 
                 <div className='search-locations-bar'>
                     <div className='search-locations-input-wrapper'>
                         <input 
+                        aria-label = "Search the museum name"
                         type="text" 
                         placeholder="Search by museum name" 
                         value={this.state.query}
@@ -43,10 +44,10 @@ class ListLocations extends Component {
                     </div>
                 </div>  
                 
-                <div className="search-locations-results">
+                <div className="search-locations-results" >
                     <ul className='locations-list'>
                         {places.map((place)=>(
-                            <li className="list" key={place.id}  onClick={(event)=>this.onItemClick(event, place)}>
+                            <li className="list" aria-label={place.name}  key={place.id}  onClick={(event)=>this.onItemClick(event, place)}>
                                 <div className="list-container">
                                     <div className={ this.props.selectedPlace && place.id === this.props.selectedPlace.id ? "list-selected-title" : "list-title"}>
                                         {place.name}
