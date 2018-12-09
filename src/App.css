@@ -105,6 +105,10 @@ h2{
   max-height: 10em;
 }
 
+.wikipedia-logo{
+  width: 2em;
+  float: right;
+}
 /* Responsivite  */
 
 @media only screen and (max-width: 1200px){
