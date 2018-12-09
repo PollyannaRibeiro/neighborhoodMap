@@ -70,6 +70,15 @@ h2{
   font-size: 1.2em;
 }
 
+.search-locations-results{
+  height: 85%;
+}
+.locations-list{
+  overflow-y: scroll;
+  margin-left: -1em;
+  height: 100%;
+}
+
 .list{
   background-color: rgba(99, 99, 99, 0.249);
   padding: 0.5em 2em 0.5em ;
@@ -143,5 +152,12 @@ h2{
 
   .responsive-burger{
     width: 10%;
+  }
+}
+
+@media only screen and (max-width: 900px) and (orientation : landscape){
+  .search-locations-results{
+    height: 70%;
+    
   }
 }
