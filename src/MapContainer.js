@@ -12,7 +12,7 @@ class MapContainer extends Component {
         onPlaceSelected: PropTypes.func.isRequired
     }
     
-    markers;
+    markers = {};
 
     state = {
         mapProps: null,
@@ -47,22 +47,27 @@ class MapContainer extends Component {
             const {google} = this.state.mapProps;
             let map = this.state.map;
 
-            // remove previous markers
-            if (this.markers) {
-                this.markers.forEach((marker)=>{
-                    marker.setMap(null);
-                })    
-            }
-            
-            this.markers = places.map((place) => {
-                let marker = new google.maps.Marker({
-                    position: place.geometry.location,
-                    title: place.name,
-                    name: place.name
-                });
+            let markersIds = new Set(Object.keys(this.markers));
 
-                marker.setMap(map);
-                marker.addListener('click', ()=>{this.onMarkerClick(place)});
+            places.forEach((place) => {
+                let marker = this.markers[place.id]
+
+                if (!marker){
+                    // create maker
+                    let marker = new google.maps.Marker({
+                        position: place.geometry.location,
+                        title: place.name,
+                        name: place.name,
+                        animation: google.maps.Animation.DROP
+                    });
+    
+                    marker.setMap(map);
+                    marker.addListener('click', ()=>{this.onMarkerClick(place)});
+
+                    this.markers[place.id] = marker
+                }
+
+                markersIds.delete(place.id)
 
                 if (selectedPlace && place.id === selectedPlace.id) {
                     selectedMaker = marker
@@ -70,6 +75,12 @@ class MapContainer extends Component {
 
                 return marker
             });
+
+            // remove unused ids
+            markersIds.forEach((key)=>{
+                this.markers[key].setMap(null)
+                delete this.markers[key]
+            })
         }
         const prop = this.props.selectedPlaceDetails
         let phone = ""
