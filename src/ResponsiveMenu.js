@@ -11,7 +11,7 @@ class ResponsiveMenu extends Component{
 
     render(){
 
-        let color = this.props.sidebarOpen ? '#f2f2b3' : '#a2a2a2';
+        let color = this.props.sidebarOpen ? '#ffffff' : '#a2a2a2';
 
         return(
             <Slider onClick={this.props.onMenuClick}

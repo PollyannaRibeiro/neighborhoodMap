@@ -145,6 +145,7 @@ h2{
   }
   .sidebar{
     width: 50%; 
+    height: 95%;
     transform: translateX(-100%);
     transition: transform 0.3s ease-out;
   }
@@ -156,6 +157,7 @@ h2{
 @media only screen and (max-width: 799px){
   .sidebar{
     width: 70%;
+    height: 95%;
   }
 
   .responsive-burger{
