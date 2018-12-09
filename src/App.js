@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import ListLocations from './ListLocations'
 import MapContainer from './MapContainer'
-import ResponsiveMenu from './Burger'
+import ResponsiveMenu from './ResponsiveMenu'
 
 
 class App extends Component {
@@ -14,6 +14,7 @@ class App extends Component {
     selectedPlaceDetails: null,
     places: [],
     filteredPlaces: [],
+    sidebarOpen: true,
     showingError: false
   }
   
@@ -30,7 +31,8 @@ class App extends Component {
         selectedPlace: null,
         selectedPlaceDetails: null,
         places: places, 
-        filteredPlaces: places, 
+        filteredPlaces: places,
+        sidebarOpen: true, 
         error: !success});
     }
 
@@ -113,7 +115,8 @@ class App extends Component {
       selectedPlaceDetails: null,
       places: places,
       filteredPlaces: filteredPlaces,
-      showingError: false
+      showingError: false,
+      sidebarOpen: this.state.sidebarOpen
     });
 
     if(!place) {
@@ -125,17 +128,24 @@ class App extends Component {
 
     Promise.all([detailsPromise, wikiPromise]).then((values) => {
       let details = Object.assign({}, values[0], values[1]);
-      console.log(details);
       this.setState({
         google: this.state.google,
         selectedPlace: place,
         selectedPlaceDetails: details,
         places: places,
         filteredPlaces: filteredPlaces,
-        showingError: false
+        showingError: false,
+        sidebarOpen: this.state.sidebarOpen
       });
     }).catch((error) => {
       console.log(error)
+    })
+  }
+
+  onMenuClick() {
+    this.setState((previousState) => {
+      previousState.sidebarOpen = !previousState.sidebarOpen
+      return previousState
     })
   }
 
@@ -143,10 +153,11 @@ class App extends Component {
     return (
       <div className="App">
         <header className="header">
-          <ResponsiveMenu/>
+          <ResponsiveMenu sidebarOpen={this.state.sidebarOpen} onMenuClick={this.onMenuClick.bind(this)}/>
           <h1>London's Museums</h1>
         </header>
         <ListLocations 
+          sidebarOpen={this.state.sidebarOpen}
           selectedPlace={this.state.selectedPlace}
           places={this.state.filteredPlaces} 
           onQueryChanged={this.updateQuery.bind(this)} 

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { Slider } from 'react-burgers'
 import PropTypes from 'prop-types'
 
 class ListLocations extends Component {
 
     static propTypes = {
+        sidebarOpen: PropTypes.bool.isRequired,
         selectedPlace: PropTypes.object,
         places: PropTypes.array.isRequired,
         onQueryChanged: PropTypes.func.isRequired,
@@ -30,8 +30,13 @@ class ListLocations extends Component {
     
         let places = this.props.places;
 
+        let sidebarClass = "sidebar"
+        if (this.props.sidebarOpen) {
+            sidebarClass = "sidebar open"
+        }
+
         return(
-            <div className="sidebar" role="navigation">
+            <div className={sidebarClass} role="navigation">
 
                 <div className='search-locations-bar'>
                     <div className='search-locations-input-wrapper'>
