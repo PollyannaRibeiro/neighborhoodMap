@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import ListLocations from './ListLocations'
 import MapContainer from './MapContainer'
@@ -64,11 +64,6 @@ class App extends Component {
   }
 
   fetchDetails(place){
-
-    if (place == null) {
-      return
-    }
-
     var request = {
         placeId: place.place_id,
         fields: ['name', 'rating', 'formatted_phone_number', 'formatted_address', 'photos']
@@ -77,21 +72,35 @@ class App extends Component {
     const {google} = this.state.google.mapProps
     const map = this.state.google.map
 
-    function callback(details, status) {
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
-        this.setState({
-          google: this.state.google,
-          selectedPlace: place,
-          selectedPlaceDetails: details,
-          places: this.state.places,
-          filteredPlaces: this.state.filteredPlaces,
-          showingError: false
-        });
-      }
-    }
+    return new Promise( (resolve, reject) => {
+      let service = new google.maps.places.PlacesService(map);
+      service.getDetails(request, (details, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          resolve(details)
+        } else {
+          reject(status)
+        }
+      })
+    })
+  }
 
-    let service = new google.maps.places.PlacesService(map);
-    service.getDetails(request, callback.bind(this));
+  fetchWiki(place){
+    let name = encodeURIComponent(place.name)
+    return fetch(`https://en.wikipedia.org/w/api.php?action=opensearch&search=${name}&limit=10&namespace=0&origin=*&format=json`)
+    .then((response) => {
+      return response.json()
+    }).then((json) => {
+      return new Promise((resolve, reject) => {
+        if (json.length > 3 && json[1].length > 0) {
+          let wikiDescription = json[2][0]
+          let wikiUrl = json[3][0]
+  
+          return resolve({wikiDescription: wikiDescription, wikiUrl: wikiUrl})
+        } else {
+          return resolve({wikiDescription: "", wikiUrl: ""})
+        }
+      })
+    })
   }
 
   // when the place is selected, update the state and fetch the place details
@@ -107,7 +116,27 @@ class App extends Component {
       showingError: false
     });
 
-    this.fetchDetails(place)
+    if(!place) {
+      return
+    }
+
+    let detailsPromise = this.fetchDetails(place)
+    let wikiPromise = this.fetchWiki(place)
+
+    Promise.all([detailsPromise, wikiPromise]).then((values) => {
+      let details = Object.assign({}, values[0], values[1]);
+      console.log(details);
+      this.setState({
+        google: this.state.google,
+        selectedPlace: place,
+        selectedPlaceDetails: details,
+        places: places,
+        filteredPlaces: filteredPlaces,
+        showingError: false
+      });
+    }).catch((error) => {
+      console.log(error)
+    })
   }
 
   render() {
