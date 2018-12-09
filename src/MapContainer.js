@@ -39,6 +39,7 @@ class MapContainer extends Component {
     render(){
         let places = this.props.places
         let selectedPlace = this.props.selectedPlace
+        let selectedPlaceDetails = this.props.selectedPlaceDetails
         let selectedPlaceName = selectedPlace ? selectedPlace.name : ""
         let selectedMaker = null
 
@@ -71,8 +72,14 @@ class MapContainer extends Component {
 
                 if (selectedPlace && place.id === selectedPlace.id) {
                     selectedMaker = marker
-                }
 
+                    if (selectedPlaceDetails) {
+                        marker.setAnimation(null);
+                    } else {
+                        marker.setAnimation(google.maps.Animation.BOUNCE);
+                    }
+                }
+                
                 return marker
             });
 
