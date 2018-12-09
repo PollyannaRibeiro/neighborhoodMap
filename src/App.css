@@ -109,6 +109,15 @@ h2{
   width: 2em;
   float: right;
 }
+
+/* Map */
+
+.map{
+  margin-left: 20%;
+  width: 80%!important;
+  height: 95%!important;
+}
+
 /* Responsivite  */
 
 @media only screen and (max-width: 1200px){
