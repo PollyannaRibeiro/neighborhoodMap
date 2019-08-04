@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/neighborhoodMap/static/css/main.63a40f48.chunk.css",
+    "main.js": "/neighborhoodMap/static/js/main.8d8f38cc.chunk.js",
+    "main.js.map": "/neighborhoodMap/static/js/main.8d8f38cc.chunk.js.map",
+    "runtime~main.js": "/neighborhoodMap/static/js/runtime~main.ebf65a5f.js",
+    "runtime~main.js.map": "/neighborhoodMap/static/js/runtime~main.ebf65a5f.js.map",
+    "static/js/2.7f8bbbeb.chunk.js": "/neighborhoodMap/static/js/2.7f8bbbeb.chunk.js",
+    "static/js/2.7f8bbbeb.chunk.js.map": "/neighborhoodMap/static/js/2.7f8bbbeb.chunk.js.map",
+    "index.html": "/neighborhoodMap/index.html",
+    "precache-manifest.dfe6c6c57e4ecec0fafe615a8bd54dee.js": "/neighborhoodMap/precache-manifest.dfe6c6c57e4ecec0fafe615a8bd54dee.js",
+    "service-worker.js": "/neighborhoodMap/service-worker.js",
+    "static/css/main.63a40f48.chunk.css.map": "/neighborhoodMap/static/css/main.63a40f48.chunk.css.map",
+    "static/media/icon_Wikipedia.png": "/neighborhoodMap/static/media/icon_Wikipedia.c7915b4b.png"
+  }
+}
